@@ -1,0 +1,40 @@
+<app-navbar></app-navbar>
+<div *ngIf="!quizSelected" class="main-container">
+    <p>Select a quiz you would like to amend.</p>
+    <div class="quiz-img-cont">
+        <img src="../../assets/geography.svg" (click)="selectQuiz()">
+        <img src="../../assets/maths.svg" (click)="selectQuiz()">
+        <img src="../../assets/history.svg" (click)="selectQuiz()">
+    </div>
+</div>
+
+<div *ngIf="quizSelected" class="main-container">
+    <div class="inner-container">
+        <p>Quiz Title</p>
+        <input nz-input nzSize="large" class="login-input question" placeholder="Here is a question" />
+        <input nz-input nzSize="large" class="login-input" placeholder="answer A" />
+        <input nz-input nzSize="large" class="login-input" placeholder="answer B" />
+        <input nz-input nzSize="large" class="login-input" placeholder="answer C" />
+
+        <input nz-input nzSize="large" class="login-input question" placeholder="Here is a question" />
+        <input nz-input nzSize="large" class="login-input" placeholder="answer A" />
+        <input nz-input nzSize="large" class="login-input" placeholder="answer B" />
+        <input nz-input nzSize="large" class="login-input" placeholder="answer C" />
+
+        <input nz-input nzSize="large" class="login-input question" placeholder="Here is a question" />
+        <input nz-input nzSize="large" class="login-input" placeholder="answer A" />
+        <input nz-input nzSize="large" class="login-input" placeholder="answer B" />
+        <input nz-input nzSize="large" class="login-input" placeholder="answer C" />
+
+        <input nz-input nzSize="large" class="login-input question" placeholder="Here is a question" />
+        <input nz-input nzSize="large" class="login-input" placeholder="answer A" />
+        <input nz-input nzSize="large" class="login-input" placeholder="answer B" />
+        <input nz-input nzSize="large" class="login-input" placeholder="answer C" />
+
+        <input nz-input nzSize="large" class="login-input question" placeholder="Here is a question" />
+        <input nz-input nzSize="large" class="login-input" placeholder="answer A" />
+        <input nz-input nzSize="large" class="login-input" placeholder="answer B" />
+        <input nz-input nzSize="large" class="login-input" placeholder="answer C" />
+    </div>
+
+</div>

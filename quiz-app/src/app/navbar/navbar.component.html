@@ -1,0 +1,14 @@
+<nz-affix [nzOffsetTop]="offsetTop">
+    <div class="top-container">
+        <img src="../../assets/quizzical-logo.svg" alt="">
+        <div class="edit-quiz cursor" (click)="goHome()">
+            <p>Home</p>
+        </div>
+        <div class="edit-quiz cursor" (click)="editQuiz()">
+            <p>Edit a quiz</p>
+        </div>
+        <div class='logout-cont'>
+            <p (click)="logout()" class="cursor">LOG OUT</p>
+        </div>
+    </div>
+</nz-affix>
