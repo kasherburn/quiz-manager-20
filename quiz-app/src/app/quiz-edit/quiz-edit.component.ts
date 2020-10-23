@@ -48,10 +48,8 @@ export class QuizEditComponent implements OnInit {
   }
   // save changes to a question you have updated
   saveChanges(q) {
-    console.log(q)
     this.quiz_service.updateQuizQuestion(q).then(() => {
       this.notification.createNotification('success', 'Success!', 'Question successfully updated!')
-      console.log('question updated')
     }).catch((err) => {
       this.notification.createNotification('error', 'There has been a problem,', 'Please try again!')
       console.log(err)

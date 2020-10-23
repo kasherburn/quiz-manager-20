@@ -36,7 +36,6 @@ export class QuizPageComponent implements OnInit {
     this.quiz_service.getQuizQuestions(id).then((result) => {
       this.quizQuestions = result;
       this.index = 0;
-      console.log(this.quizQuestions)
     }).catch((err) => {
       console.log(err)
     });
