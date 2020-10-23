@@ -1,3 +1,4 @@
+@import "../../styles-theme/variables.scss";
 .main-container {
     max-width: 1000px;
     margin: auto;
@@ -7,8 +8,8 @@
     justify-content: space-between;
     p {
         font-weight: bold;
-        color: #ba2ebd;
-        font-size: 32px;
+        color: $color_primary;
+        font-size: $font_size_1;
         font-family: Arial, Helvetica, sans-serif;
     }
     .quiz-img-cont {
@@ -19,7 +20,7 @@
             width: 300px;
             border-style: solid;
             border-width: 3px;
-            border-color: #ba2ebd;
+            border-color: $color_primary;
             box-shadow: 0px 10px 24px rgba(0, 0, 0, 0.2) !important;
             opacity: 0.7;
         }
@@ -27,7 +28,7 @@
             opacity: 1;
             box-shadow: 0px 10px 24px rgba(0, 0, 0, 0.4) !important;
             cursor: pointer;
-            background-color: #e124891c;
+            background-color: $color_tertiary;
         }
     }
 }

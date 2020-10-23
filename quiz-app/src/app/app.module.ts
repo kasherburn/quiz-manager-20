@@ -14,6 +14,9 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { QuizPageComponent } from './quiz-page/quiz-page.component';
 import { QuizEditComponent } from './quiz-edit/quiz-edit.component';
+import { AuthService } from '../services/auth.service';
+import { QuizService } from '../services/quiz.service';
+
 
 registerLocaleData(en);
 
@@ -34,7 +37,10 @@ registerLocaleData(en);
     HttpClientModule,
     BrowserAnimationsModule
   ],
-  providers: [{ provide: NZ_I18N, useValue: en_US }],
+  providers: [AuthService,
+    QuizService,
+    { provide: NZ_I18N, useValue: en_US }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

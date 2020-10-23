@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { NavbarComponent } from '../navbar/navbar.component';
+import { QuizService } from '../../services/quiz.service';
+
 
 @Component({
   selector: 'app-dashboard',
@@ -8,18 +10,30 @@ import { NavbarComponent } from '../navbar/navbar.component';
   styleUrls: ['./dashboard.component.scss']
 })
 export class DashboardComponent implements OnInit {
-
+  quizList: any = {};
 
   constructor(
-    public router: Router
+    public router: Router,
+    private quiz_service: QuizService
   ) { }
 
   ngOnInit() {
+    this.getQuizzes()
   }
 
-  selectQuiz() {
-    this.router.navigateByUrl('quiz-time')
+  async getQuizzes() {
+    await this.quiz_service.getQuizList().then((result) => {
+      this.quizList = result;
+    }).catch((err) => {
+      console.log(err)
+    });
   }
+
+  selectQuiz(quiz) {
+    this.router.navigate(['quiz-time'], { queryParams: { id: quiz.id }, queryParamsHandling: 'merge' })
+  }
+
+
 
 
 

@@ -5,10 +5,12 @@
     <div class="question-mark">
         <img src="../../assets/question-mark.svg">
     </div>
-    <div class=" input-container">
-        <input nz-input placeholder="Enter email" nzSize="large" class="login-input" />
-        <input nz-input placeholder="Enter password" nzSize="large" class="login-input" />
+    <form class=" input-container" #form="ngForm">
+        <input nz-input placeholder="Enter email" nzSize="large" name="email" [(ngModel)]="login_creds.email" required
+            class="login-input" />
+        <input nz-input placeholder="Enter password" nzSize="large" type="password" name="password"
+            [(ngModel)]="login_creds.password" required class="login-input" />
         <button nz-button nzType="default" class="login-button" (click)="login()">Log In</button>
-    </div>
+    </form>
 
 </div>
