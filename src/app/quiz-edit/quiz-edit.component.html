@@ -1,0 +1,28 @@
+<app-navbar></app-navbar>
+<div *ngIf="!quizSelected" class="main-container">
+    <p>Select a quiz you would like to amend.</p>
+    <div class="quiz-img-cont">
+        <img src="../../assets/geography.svg" (click)="selectQuiz(quizList[0])">
+        <img src="../../assets/maths.svg" (click)="selectQuiz(quizList[1])">
+        <img src="../../assets/history.svg" (click)="selectQuiz(quizList[2])">
+    </div>
+</div>
+
+<div *ngIf="quizSelected" class="quiz-container">
+    <div class="inner-container">
+        <p>{{quizTitle}}</p>
+        <form class="question" *ngFor=" let question of quizQuestions" #form="ngForm">
+            <input nz-input nzSize="large" class="login-input question" name="question" [(ngModel)]="question.question"
+                (blur)="saveChanges(question)" />
+            <input nz-input nzSize="large" class="login-input" name="answer_a" [(ngModel)]="question.answer_a"
+                (blur)="saveChanges(question)" />
+            <input nz-input nzSize="large" class="login-input" name="answer_b" [(ngModel)]="question.answer_b"
+                (blur)="saveChanges(question)" />
+            <input nz-input nzSize="large" class="login-input" name="answer_c" [(ngModel)]="question.answer_c"
+                (blur)="saveChanges(question)" />
+        </form>
+
+
+    </div>
+
+</div>

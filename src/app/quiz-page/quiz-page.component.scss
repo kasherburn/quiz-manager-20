@@ -1,0 +1,96 @@
+@import "../../styles-theme/variables.scss";
+.main-container {
+    max-width: 1000px;
+    margin: auto;
+    padding-top: 150px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    p {
+        text-align: center;
+        font-weight: bold;
+        color: $color_primary;
+        font-size: $font_size_1;
+        font-family: Arial, Helvetica, sans-serif;
+    }
+    .title {
+        font-size: $title_font !important;
+    }
+    .quiz-ans-cont {
+        display: flex;
+        justify-content: space-between;
+        .answer-box {
+            height: 300px;
+            width: 300px;
+            border-style: solid;
+            border-width: 3px;
+            border-color: $color_primary;
+            box-shadow: 0px 10px 24px rgba(0, 0, 0, 0.2) !important;
+            opacity: 0.8;
+            background-color: $color_tertiary;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            .answer {
+                width: 100%;
+                text-align: center;
+                p {
+                    color: $color_primary;
+                }
+            }
+        }
+        .answer-box:hover {
+            opacity: 1;
+            box-shadow: 0px 10px 24px rgba(0, 0, 0, 0.4) !important;
+            cursor: pointer;
+        }
+    }
+}
+.end-quiz-cont {
+    max-width: 600px;
+    margin: auto;
+    padding-top: 150px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    p {
+        text-align: center;
+        font-weight: bold;
+        color: $color_primary;
+        font-size: $font_size_1;
+        font-family: Arial, Helvetica, sans-serif;
+    }
+    .title {
+        font-size: $title_font !important;
+    }
+    .quiz-ans-cont {
+        display: flex;
+        justify-content: space-between;
+
+        .answer-box-2 {
+            height: 200px;
+            width: 200px;
+            border-style: solid;
+            border-width: 3px;
+            border-color: $color_primary;
+            box-shadow: 0px 10px 24px rgba(0, 0, 0, 0.2) !important;
+            opacity: 0.8;
+            background-color: $color_tertiary;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            .answer {
+                width: 100%;
+                text-align: center;
+                p {
+                    color: $color_primary;
+                }
+            }
+        }
+        .answer-box-2:hover {
+            opacity: 1;
+            box-shadow: 0px 10px 24px rgba(0, 0, 0, 0.4) !important;
+            cursor: pointer;
+        }
+    }
+}

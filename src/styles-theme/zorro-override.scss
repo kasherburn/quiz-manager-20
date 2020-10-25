@@ -1,0 +1,36 @@
+.notif-title-wrapper {
+    display: flex;
+    justify-content: space-between !important;
+    p {
+        color: #ba2ebd !important;
+        font-family: Arial, Helvetica, sans-serif !important;
+    }
+    img {
+        padding-bottom: 13px !important;
+    }
+}
+.ant-notification {
+    width: 333px !important;
+
+    .ant-notification-notice-message {
+        margin-left: 0px !important;
+        padding-right: 16px !important;
+    }
+    .anticon {
+        display: none !important;
+    }
+    .ant-notification-notice-message {
+        color: #ba2ebd !important !important;
+        font-family: Arial, Helvetica, sans-serif !important;
+        width: 100%;
+    }
+    .ant-notification-notice-description {
+        color: #ba2ebd !important !important;
+        font-family: Arial, Helvetica, sans-serif !important;
+        margin-left: 0px !important;
+        margin-top: 2px !important;
+    }
+    .ant-notification-notice-icon {
+        margin-top: 2px !important;
+    }
+}

@@ -1,0 +1,38 @@
+<app-navbar></app-navbar>
+<div *ngIf="quiz" class="main-container">
+    <p class="title">{{quizQuestions[index]?.question}}</p>
+
+    <div class="quiz-ans-cont">
+        <div class="answer-box" (click)="changeQuestion()">
+            <div class="answer">
+                <p>{{quizQuestions[index]?.answer_a}}</p>
+            </div>
+        </div>
+        <div class="answer-box" (click)="changeQuestion()">
+            <div class="answer">
+                <p>{{quizQuestions[index]?.answer_b}}</p>
+            </div>
+        </div>
+        <div class="answer-box" (click)="changeQuestion()">
+            <div class="answer">
+                <p>{{quizQuestions[index]?.answer_c}}</p>
+            </div>
+        </div>
+    </div>
+
+</div>
+<div *ngIf="!quiz" class="end-quiz-cont">
+    <p class="title">GAME OVER!!!</p>
+    <div class="quiz-ans-cont">
+        <div class="answer-box-2" (click)="playAgain()">
+            <div class="answer">
+                <p>Play Again?</p>
+            </div>
+        </div>
+        <div class="answer-box-2" (click)="goHome()">
+            <div class="answer">
+                <p>Go Home</p>
+            </div>
+        </div>
+    </div>
+</div>

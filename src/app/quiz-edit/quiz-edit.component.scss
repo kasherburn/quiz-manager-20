@@ -1,0 +1,81 @@
+@import "../../styles-theme/variables.scss";
+.main-container {
+    max-width: 1000px;
+    margin: auto;
+    padding-top: 150px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    margin-bottom: 50px;
+    p {
+        font-weight: bold;
+        color: $color_primary;
+        font-size: $font_size_1;
+        font-family: $font_family;
+    }
+    .quiz-img-cont {
+        display: flex;
+        justify-content: space-between;
+        img {
+            height: 300px;
+            width: 300px;
+            border-style: solid;
+            border-width: 3px;
+            border-color: $color_primary;
+            box-shadow: 0px 10px 24px rgba(0, 0, 0, 0.2) !important;
+            opacity: 0.7;
+        }
+        img:hover {
+            opacity: 1;
+            box-shadow: 0px 10px 24px rgba(0, 0, 0, 0.4) !important;
+            cursor: pointer;
+            background-color: $color_tertiary;
+        }
+    }
+}
+
+.quiz-container {
+    max-width: 550px;
+    margin: auto;
+    padding-top: 100px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    margin-bottom: 50px;
+    p {
+        font-weight: bold;
+        color: $color_primary;
+        font-size: $font_size_1;
+        font-family: $font_family;
+    }
+    .login-input {
+        color: $color_secondary !important;
+        border-color: $color_secondary !important;
+        border-radius: 2px !important;
+        margin-bottom: 15px !important;
+        box-shadow: 0px 10px 24px rgba(0, 0, 0, 0.2) !important;
+        border-style: none !important;
+        font-family: $font_family;
+        height: 30px;
+        font-size: $font_size_3;
+    }
+
+    ::placeholder {
+        color: $color_secondary !important;
+        padding: 3px;
+        font-family: $font_family;
+    }
+
+    .question {
+        font-weight: bold;
+        color: $color_secondary;
+        font-size: $font_size_2;
+        font-family: $font_family;
+    }
+
+    .inner-container {
+        max-width: 550px;
+        display: flex;
+        flex-direction: column;
+    }
+}
