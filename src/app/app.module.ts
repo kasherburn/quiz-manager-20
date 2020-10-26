@@ -6,7 +6,7 @@ import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
 import { NgZorroAntdModule, NZ_I18N, en_US } from 'ng-zorro-antd';
 import { FormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { registerLocaleData } from '@angular/common';
 import en from '@angular/common/locales/en';
@@ -16,6 +16,8 @@ import { QuizPageComponent } from './quiz-page/quiz-page.component';
 import { QuizEditComponent } from './quiz-edit/quiz-edit.component';
 import { AuthService } from '../services/auth.service';
 import { QuizService } from '../services/quiz.service';
+import { AuthInterceptorService } from '../services/auth-interceptor.service';
+import { AuthGuardService } from '../services/auth-guard.service';
 
 
 registerLocaleData(en);
@@ -39,7 +41,13 @@ registerLocaleData(en);
   ],
   providers: [AuthService,
     QuizService,
-    { provide: NZ_I18N, useValue: en_US }
+    { provide: NZ_I18N, useValue: en_US },
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthInterceptorService,
+      multi: true
+    },
+    AuthGuardService
   ],
   bootstrap: [AppComponent]
 })

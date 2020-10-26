@@ -15,7 +15,7 @@ export class QuizService {
   public getQuizList(): Promise<any> {
     return new Promise((resolve, reject) => {
       const url = 'http://localhost:3000/quiz-list';
-      return this.http.get(url)
+      return this.http.get(url, { withCredentials: true })
         .subscribe(
           data => {
             resolve(data);
