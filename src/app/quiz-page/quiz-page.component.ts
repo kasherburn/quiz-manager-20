@@ -25,15 +25,15 @@ export class QuizPageComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.sub = this.route.queryParams.subscribe(params => {
+    this.sub = this.route.queryParams.subscribe(params => { //subscribe to query params and save id param as quizId
       this.quizId = params['id']
     });
-    this.loadQuizQuestions(this.quizId)
+    this.loadQuizQuestions(this.quizId) //retrieve questions for that quiz id
   }
 
 
   loadQuizQuestions(id) {
-    this.quiz_service.getQuizQuestions(id).then((result) => {
+    this.quiz_service.getQuizQuestions(id).then((result) => { //get quiz questions by quiz_id so only relevant q's will be returned
       this.quizQuestions = result;
       this.index = 0;
     }).catch((err) => {
@@ -42,7 +42,7 @@ export class QuizPageComponent implements OnInit {
 
   }
 
-  changeQuestion() {
+  changeQuestion() { //iterate through array of questions changing display each time a user clicks
     if (this.index === this.quizQuestions.length - 1) {
       this.quiz = false;
     }
@@ -51,12 +51,12 @@ export class QuizPageComponent implements OnInit {
     }
 
   }
-
+  //reset questions array
   playAgain() {
     this.index = 0;
     this.quiz = true;
   }
-
+  //navigate home
   goHome() {
     this.router.navigateByUrl('dashboard')
   }

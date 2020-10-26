@@ -28,7 +28,7 @@ export class LoginComponent implements OnInit {
         this.notification.createNotification('error', 'There has been a problem,', result.data.message)
         return;
       }
-      if (result.data.isAuthenticated) {
+      if (result.data.isAuthenticated) { //if user is authenticated navigate to dash
         this.router.navigateByUrl('dashboard')
       }
     }).catch((err) => {

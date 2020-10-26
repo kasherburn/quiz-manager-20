@@ -18,6 +18,8 @@ export class NavbarComponent implements OnInit {
 
   editQuiz() {
     this.router.navigateByUrl('quiz-edit')
+    this.router.routeReuseStrategy.shouldReuseRoute = () => false;
+    this.router.onSameUrlNavigation = 'reload'; //if already on edit quiz page reset page including variables
   }
 
   goHome() {

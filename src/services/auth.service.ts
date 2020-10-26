@@ -13,7 +13,7 @@ export class AuthService {
   ) { }
 
 
-
+  // take bearer token from login response and save to local storage
   private setSession(authResult) {
     const expiresAt = moment().add(authResult.expiresIn, 'second');
     localStorage.setItem('bearer_token', authResult.bearer_token);

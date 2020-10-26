@@ -39,7 +39,8 @@ registerLocaleData(en);
     HttpClientModule,
     BrowserAnimationsModule
   ],
-  providers: [AuthService,
+  providers: [
+    AuthService,
     QuizService,
     { provide: NZ_I18N, useValue: en_US },
     {

@@ -22,7 +22,7 @@ export class DashboardComponent implements OnInit {
   }
 
   async getQuizzes() {
-    await this.quiz_service.getQuizList().then((result) => {
+    await this.quiz_service.getQuizList().then((result) => { //get quiz subject list
       this.quizList = result;
     }).catch((err) => {
       console.log(err)

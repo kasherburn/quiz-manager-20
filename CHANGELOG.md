@@ -5,3 +5,4 @@
 - ADDED services inc quiz, auth & notification
 - ADDED unit tests for components
 - ADDED theme files inc variables, index & zorro override
+- ADDED http interceptor & auth-guard service
