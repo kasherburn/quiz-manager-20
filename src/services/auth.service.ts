@@ -17,7 +17,7 @@ export class AuthService {
       return this.http.post(url, credentials)
         .subscribe(
           data => {
-            resolve(data);
+            resolve({ data });
           },
           (error) => {
             if (error && error.error) {
@@ -51,6 +51,25 @@ export class AuthService {
   public getUser(): Promise<any> {
     return new Promise((resolve, reject) => {
       const url = 'http://localhost:3000/user';
+      return this.http.get(url)
+        .subscribe(
+          result => {
+            resolve({ result });
+
+          },
+          (error) => {
+            if (error) {
+              reject({ error });
+            }
+
+          }
+        );
+    });
+  };
+
+  public logout(): Promise<any> {
+    return new Promise((resolve, reject) => {
+      const url = 'http://localhost:3000/logout';
       return this.http.get(url)
         .subscribe(
           result => {

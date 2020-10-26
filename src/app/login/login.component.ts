@@ -24,11 +24,11 @@ export class LoginComponent implements OnInit {
 
   login() {
     this.auth.authenticate(this.login_creds).then((result) => {
-      if (result == 'user not found!') {
-        this.notification.createNotification('error', 'There has been a problem,', result)
+      if (result.data.message == 'user not found!') {
+        this.notification.createNotification('error', 'There has been a problem,', result.data.message)
         return;
       }
-      if (result == 'successfully authenticated!') {
+      if (result.data.message == 'successfully authenticated!') {
         this.router.navigateByUrl('dashboard')
       }
     }).catch((err) => {
@@ -40,7 +40,7 @@ export class LoginComponent implements OnInit {
 
   register() {
     this.auth.register(this.login_creds).then((result) => {
-      this.notification.createNotification('success', 'Success!', `${this.login_creds.email} has now been registered, please login!`)
+      this.notification.createNotification('success', 'Success!', `${this.login_creds.username} has now been registered, please login!`)
     }).catch((err) => {
       console.log(err)
       this.notification.createNotification('error', 'There has been a problem,', 'Please try again!')
