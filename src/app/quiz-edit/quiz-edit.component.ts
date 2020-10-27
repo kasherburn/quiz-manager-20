@@ -55,12 +55,17 @@ export class QuizEditComponent implements OnInit {
       "answer_c": q.answer_c,
       "id": q['_id']
     }
-    this.quiz_service.updateQuizQuestion(question).then(() => {
-      this.notification.createNotification('success', 'Success!', 'Question successfully updated!')
-    }).catch((err) => {
-      this.notification.createNotification('error', 'There has been a problem,', 'Please try again!')
-      console.log(err)
-    });
+    if (question.question && question.answer_a && question.answer_b && question.answer_c) {
+      this.quiz_service.updateQuizQuestion(question).then(() => {
+        this.notification.createNotification('success', 'Success!', 'Question successfully updated!')
+      }).catch((err) => {
+        this.notification.createNotification('error', 'There has been a problem,', 'Please try again!')
+        console.log(err)
+      });
+    } else {
+      this.notification.createNotification('error', 'There has been a problem,', `Please complete question and answer fields!`)
+    }
+
   }
 
 
