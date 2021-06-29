@@ -129,4 +129,25 @@
         font-family: $font_family;
         font-weight: 100;
     }
+
+    .no-data {
+        padding-top: 157px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        margin: auto;
+        width: 300px;
+        p {
+            font-size: 20px;
+            text-align: center;
+            font-weight: 400;
+        }
+    }
+
+    .input-container {
+        display: flex;
+        p {
+            margin-right: 5px;
+        }
+    }
 }

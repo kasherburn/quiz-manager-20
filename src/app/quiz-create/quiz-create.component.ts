@@ -17,7 +17,9 @@ export class QuizCreateComponent implements OnInit {
     answer_b: string;
     answer_c: string;
     answer_d: string;
+    answer_e: string;
     question_id: number;
+    questionNumber: number = 1;
 
     constructor(
         private quiz_service: QuizService,
@@ -49,12 +51,17 @@ export class QuizCreateComponent implements OnInit {
                 this.notification.createNotification('error', 'There has been a problem,', err)
             });
         } else {
+            if (!this.question || !this.answer_a || !this.answer_c || !this.answer_b) {
+                this.notification.createNotification('error', 'There has been a problem,', 'Questions are required to have between 3 to 5 multiple choice answers.')
+                return;
+            }
             const quizQuestion = {
                 question: this.question,
                 answer_a: this.answer_a,
                 answer_b: this.answer_b,
                 answer_c: this.answer_c,
                 answer_d: this.answer_d,
+                answer_e: this.answer_e,
                 quiz_id: this.quiz_id,
                 question_id: this.question_id ? this.question_id++ : this.quiz_id + 10
             }
@@ -65,6 +72,8 @@ export class QuizCreateComponent implements OnInit {
                 this.answer_b = '';
                 this.answer_c = '';
                 this.answer_d = '';
+                this.answer_e = '';
+                this.questionNumber++;
             }).catch((err) => {
                 this.notification.createNotification('error', 'There has been a problem,', err)
             });

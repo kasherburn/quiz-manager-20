@@ -22,6 +22,7 @@ export class QuizEditComponent implements OnInit {
     answer_b: string;
     answer_c: string;
     answer_d: string;
+    answer_e: string;
     question_id: number;
 
     constructor(
@@ -79,14 +80,19 @@ export class QuizEditComponent implements OnInit {
     }
     // save changes to a question you have updated
     saveChanges(q, answer?) {
-        console.log(q)
         let req;
         if (answer) {
+            if (!q.answers.answer_a || !q.answers.answer_a || !q.answers.answer_c) {
+                this.notification.createNotification('error', 'There has been a problem,', 'Questions must have between 3 to 5 multiple choice answers.')
+                this.loadQuizQuestions(this.selectedQuiz)
+                return;
+            }
             req = {
-                "answer_a": q.answers.answer_a ? q.answers.answer_a : null,
-                "answer_b": q.answers.answer_b ? q.answers.answer_b : null,
-                "answer_c": q.answers.answer_c ? q.answers.answer_c : null,
+                "answer_a": q.answers.answer_a,
+                "answer_b": q.answers.answer_b,
+                "answer_c": q.answers.answer_c,
                 "answer_d": q.answers.answer_d ? q.answers.answer_d : null,
+                "answer_e": q.answers.answer_e ? q.answers.answer_e : null,
                 "id": q.answers['_id']
             }
             if (req) {
@@ -101,23 +107,28 @@ export class QuizEditComponent implements OnInit {
                 this.notification.createNotification('error', 'There has been a problem,', `Please complete answer fields!`)
             }
         } else {
-            req = {
-                "question": q.question,
-                "id": q['_id']
-            }
-            if (req && req.question) {
-                this.quiz_service.updateQuizQuestion(req).then(() => {
-                    this.notification.createNotification('success', 'Success!', 'Question successfully updated!')
-                    this.loadQuizQuestions(this.selectedQuiz)
-                }).catch((err) => {
-                    this.notification.createNotification('error', 'There has been a problem,', err)
-                    console.log(err)
-                });
+            if (!q.question) {
+                this.notification.createNotification('error', 'There has been a problem,', 'Questions cannot be blank.')
+                return;
             } else {
-                this.notification.createNotification('error', 'There has been a problem,', `Please complete question field!`)
+                req = {
+                    "question": q.question,
+                    "id": q['_id']
+                }
+                if (req && req.question) {
+                    this.quiz_service.updateQuizQuestion(req).then(() => {
+                        this.notification.createNotification('success', 'Success!', 'Question successfully updated!')
+                        this.loadQuizQuestions(this.selectedQuiz)
+                    }).catch((err) => {
+                        this.notification.createNotification('error', 'There has been a problem,', err)
+                        console.log(err)
+                    });
+                } else {
+                    this.notification.createNotification('error', 'There has been a problem,', `Please complete question field!`)
+                }
             }
-        }
 
+        }
 
     }
 
@@ -138,23 +149,32 @@ export class QuizEditComponent implements OnInit {
             });
         } else {
             await this.quiz_service.deleteQuizName(this.quizTitle).then((res) => {
-                this.quizQuestions.forEach(quiz => {
-                    this.quiz_service.deleteQuizQuestion(quiz.question_id).then((res) => {
-                        this.quiz_service.deleteQuizAnswers(quiz.question_id).then((res) => {
-                            this.notification.createNotification('success', 'Success,', 'The selected quiz has been deleted')
-                            this.loadQuizQuestions(this.selectedQuiz)
-                            this.router.navigateByUrl('quiz-edit')
-                            this.router.routeReuseStrategy.shouldReuseRoute = () => false;
-                            this.router.onSameUrlNavigation = 'reload';
+                if (this.quizQuestions.length === 0) {
+                    this.notification.createNotification('success', 'Success,', 'The selected quiz has been deleted.')
+                    this.router.navigateByUrl('quiz-edit')
+                    this.router.routeReuseStrategy.shouldReuseRoute = () => false;
+                    this.router.onSameUrlNavigation = 'reload';
+                }
+                else {
+                    this.quizQuestions.forEach(quiz => {
+                        this.quiz_service.deleteQuizQuestion(quiz.question_id).then((res) => {
+                            this.quiz_service.deleteQuizAnswers(quiz.question_id).then((res) => {
+                                this.notification.createNotification('success', 'Success,', 'The selected quiz has been deleted.')
+                                this.loadQuizQuestions(this.selectedQuiz)
+                                this.router.navigateByUrl('quiz-edit')
+                                this.router.routeReuseStrategy.shouldReuseRoute = () => false;
+                                this.router.onSameUrlNavigation = 'reload';
+                            }).catch((err) => {
+                                console.log(err)
+                                this.notification.createNotification('error', 'There has been a problem,', err)
+                            });
                         }).catch((err) => {
                             console.log(err)
                             this.notification.createNotification('error', 'There has been a problem,', err)
                         });
-                    }).catch((err) => {
-                        console.log(err)
-                        this.notification.createNotification('error', 'There has been a problem,', err)
                     });
-                });
+                }
+
             }).catch((err) => {
                 this.notification.createNotification('error', 'There has been a problem,', err)
             });
@@ -164,27 +184,34 @@ export class QuizEditComponent implements OnInit {
     addQuestion(save) {
         this.newQuestion = true;
         if (save) {
-            const quizQuestion = {
-                question: this.question,
-                answer_a: this.answer_a,
-                answer_b: this.answer_b,
-                answer_c: this.answer_c,
-                answer_d: this.answer_d,
-                quiz_id: this.selectedQuiz,
-                question_id: this.question_id ? this.question_id++ : this.selectedQuiz + 10
+            if (!this.question || !this.answer_a || !this.answer_b || !this.answer_c && !this.newQuestion) {
+                this.notification.createNotification('error', 'There has been a problem,', 'Questions must have between 3 to 5 multiple choice answers.')
+                this.loadQuizQuestions(this.selectedQuiz)
+                return;
+            } else {
+                const quizQuestion = {
+                    question: this.question,
+                    answer_a: this.answer_a,
+                    answer_b: this.answer_b,
+                    answer_c: this.answer_c,
+                    answer_d: this.answer_d,
+                    answer_e: this.answer_e,
+                    quiz_id: this.selectedQuiz,
+                    question_id: this.question_id ? this.question_id++ : this.selectedQuiz + 10
+                }
+                this.quiz_service.createQuizQuestion(quizQuestion).then((res) => {
+                    this.notification.createNotification('Success', 'Success,', 'Your question has been successfully saved.')
+                    this.question = '';
+                    this.answer_a = '';
+                    this.answer_b = '';
+                    this.answer_c = '';
+                    this.answer_d = '';
+                    this.answer_e = '';
+                }).catch((err) => {
+                    this.notification.createNotification('error', 'There has been a problem,', err)
+                });
             }
-            this.quiz_service.createQuizQuestion(quizQuestion).then((res) => {
-                this.notification.createNotification('Success', 'Success,', 'Your question has been successfully saved.')
-                this.question = '';
-                this.answer_a = '';
-                this.answer_b = '';
-                this.answer_c = '';
-                this.answer_d = '';
-            }).catch((err) => {
-                this.notification.createNotification('error', 'There has been a problem,', err)
-            });
         }
-
     }
 
     home() {
