@@ -18,6 +18,7 @@ import { AuthService } from '../services/auth.service';
 import { QuizService } from '../services/quiz.service';
 import { AuthInterceptorService } from '../services/auth-interceptor.service';
 import { AuthGuardService } from '../services/auth-guard.service';
+import { QuizCreateComponent } from './quiz-create/quiz-create.component';
 
 
 registerLocaleData(en);
@@ -29,7 +30,8 @@ registerLocaleData(en);
     DashboardComponent,
     NavbarComponent,
     QuizPageComponent,
-    QuizEditComponent
+    QuizEditComponent,
+    QuizCreateComponent
   ],
   imports: [
     BrowserModule,

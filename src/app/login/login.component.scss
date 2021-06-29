@@ -26,6 +26,12 @@
             padding-top: 5px;
             padding-bottom: 3px;
         }
+        .logo-text {
+            text-align: right;
+            padding-right: 26px;
+            font-weight: 600px;
+            color: $color_primary;
+        }
     }
     .question-mark {
         margin: auto;
