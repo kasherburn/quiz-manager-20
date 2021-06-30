@@ -1,0 +1,31 @@
+<app-navbar></app-navbar>
+<div class="quiz-container">
+    <form *ngIf="title" #form="ngForm" class="title">
+        <p>What is the name of your quiz?</p>
+        <input type="text" nz-input nzSize="large" class="login-input question" name="quizTitle"
+            [(ngModel)]="quizTitle">
+        <div class="button-container">
+            <button class="button-next" (click)="next('title')">Next</button>
+        </div>
+    </form>
+    <form *ngIf="!title" #form="ngForm">
+        <p class="notes">*Please provide a question and between 3 to 5 multiple choice answers.</p>
+        <p class="question">Question {{questionNumber}}: </p>
+        <input type="text" nz-input nzSize="large" class="login-input question" name="question" [(ngModel)]="question">
+        <p class="question">A: </p>
+        <input type="text" nz-input nzSize="large" class="login-input question" name="answer_a" [(ngModel)]="answer_a">
+        <p class="question">B: </p>
+        <input type="text" nz-input nzSize="large" class="login-input question" name="answer_b" [(ngModel)]="answer_b">
+        <p class="question">C: </p>
+        <input type="text" nz-input nzSize="large" class="login-input question" name="answer_c" [(ngModel)]="answer_c">
+        <p class="question">D: </p>
+        <input type="text" nz-input nzSize="large" class="login-input question" name="answer_d" [(ngModel)]="answer_d">
+        <p class="question">E: </p>
+        <input type="text" nz-input nzSize="large" class="login-input question" name="answer_e" [(ngModel)]="answer_e">
+        <div class="button-container">
+            <button class="button-next" (click)="finish()">Done</button>
+            <button class="button-next button-couple" (click)="next('question')">+ Add</button>
+
+        </div>
+    </form>
+</div>

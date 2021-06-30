@@ -1,38 +1,39 @@
 <app-navbar></app-navbar>
-<div *ngIf="quiz" class="main-container">
-    <p class="title">{{quizQuestions[index]?.question}}</p>
+<div class="main-container">
+    <div *ngFor="let question of quizQuestions; let i = index">
+        <p>{{i + 1}}. {{question?.question}}</p>
+        <div class="answer" *ngIf="!question.revealAnswer && question.answers">
+            <p class="underlined" (click)="revealAnswer(question)">Reveal Answers</p>
+        </div>
+        <div class="quiz-ans-cont" *ngIf="question && question.answers && question.revealAnswer">
+            <div *ngIf="question.answers && question.answers.answer_a" class="answer-box">
+                <div class="answer">
+                    <p>A: {{question.answers.answer_a}}</p>
+                </div>
+            </div>
+            <div *ngIf="question.answers && question.answers.answer_b" class="answer-box">
+                <div class="answer">
+                    <p>B: {{question.answers.answer_b}}</p>
+                </div>
+            </div>
+            <div *ngIf="question.answers && question.answers.answer_c" class="answer-box">
+                <div class="answer">
+                    <p>C: {{question.answers.answer_c}}</p>
+                </div>
+            </div>
+            <div *ngIf="question.answers && question.answers.answer_d" class="answer-box">
+                <div class="answer">
+                    <p>D: {{question.answers.answer_d}}</p>
+                </div>
+            </div>
+            <div *ngIf="question.answers && question.answers.answer_e" class="answer-box">
+                <div class="answer">
+                    <p>E: {{question.answers.answer_e}}</p>
+                </div>
+            </div>
+        </div>
 
-    <div class="quiz-ans-cont">
-        <div class="answer-box" (click)="changeQuestion()">
-            <div class="answer">
-                <p>{{quizQuestions[index]?.answer_a}}</p>
-            </div>
-        </div>
-        <div class="answer-box" (click)="changeQuestion()">
-            <div class="answer">
-                <p>{{quizQuestions[index]?.answer_b}}</p>
-            </div>
-        </div>
-        <div class="answer-box" (click)="changeQuestion()">
-            <div class="answer">
-                <p>{{quizQuestions[index]?.answer_c}}</p>
-            </div>
-        </div>
-    </div>
 
-</div>
-<div *ngIf="!quiz" class="end-quiz-cont">
-    <p class="title">GAME OVER!!!</p>
-    <div class="quiz-ans-cont">
-        <div class="answer-box-2" (click)="playAgain()">
-            <div class="answer">
-                <p>Play Again?</p>
-            </div>
-        </div>
-        <div class="answer-box-2" (click)="goHome()">
-            <div class="answer">
-                <p>Go Home</p>
-            </div>
-        </div>
+
     </div>
 </div>

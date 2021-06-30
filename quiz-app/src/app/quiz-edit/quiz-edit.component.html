@@ -1,28 +1,100 @@
 <app-navbar></app-navbar>
 <div *ngIf="!quizSelected" class="main-container">
-    <p>Select a quiz you would like to amend.</p>
-    <div class="quiz-img-cont">
-        <img src="../../assets/geography.svg" (click)="selectQuiz(quizList[0])">
-        <img src="../../assets/maths.svg" (click)="selectQuiz(quizList[1])">
-        <img src="../../assets/history.svg" (click)="selectQuiz(quizList[2])">
+    <p>Select a quiz you would like to amend:</p>
+    <div class="quiz-name-container">
+        <div class="quiz-img-cont" *ngFor="let quiz of quizList">
+            <p class="name" (click)="selectQuiz(quiz)">{{quiz.quiz_name}}</p>
+        </div>
+
     </div>
 </div>
 
-<div *ngIf="quizSelected" class="quiz-container">
+<div *ngIf="quizSelected" class="quiz-container" [ngClass]="newQuestion ? 'no-margin' : ''">
     <div class="inner-container">
-        <p>{{quizTitle}}</p>
-        <form class="question" *ngFor=" let question of quizQuestions" #form="ngForm">
-            <input nz-input nzSize="large" class="login-input question" name="question" [(ngModel)]="question.question"
-                (blur)="saveChanges(question)" />
-            <input nz-input nzSize="large" class="login-input" name="answer_a" [(ngModel)]="question.answer_a"
-                (blur)="saveChanges(question)" />
-            <input nz-input nzSize="large" class="login-input" name="answer_b" [(ngModel)]="question.answer_b"
-                (blur)="saveChanges(question)" />
-            <input nz-input nzSize="large" class="login-input" name="answer_c" [(ngModel)]="question.answer_c"
-                (blur)="saveChanges(question)" />
-        </form>
+        <div *ngIf="!newQuestion">
+            <p>{{quizTitle}}
+                <span class="underlined" (click)="delete(question, 'quiz')">Delete Quiz</span>
+            </p>
+        </div>
+
+
+
+        <div *ngIf="!newQuestion">
+            <form class="question" *ngFor=" let question of quizQuestions; let last = last; let i = index"
+                #form="ngForm">
+                <div class="input-container">
+                    <p class="question">{{i +1}}).</p>
+                    <input nz-input nzSize="large" class="login-input question" name="question"
+                        [(ngModel)]="question.question" (blur)="saveChanges(question)" />
+                </div>
+                <div class="input-container">
+                    <p class="question">A.</p>
+                    <input nz-input nzSize="large" class="login-input" name="answer_a"
+                        [(ngModel)]="question.answers.answer_a" (blur)="saveChanges(question,  'answer')" />
+                </div>
+                <div class="input-container">
+                    <p class="question">B.</p>
+                    <input nz-input nzSize="large" class="login-input" name="answer_b"
+                        [(ngModel)]="question.answers.answer_b" (blur)="saveChanges(question,  'answer')" />
+                </div>
+                <div class="input-container">
+                    <p class="question">C.</p>
+                    <input nz-input nzSize="large" class="login-input" name="answer_c"
+                        [(ngModel)]="question.answers.answer_c" (blur)="saveChanges(question,  'answer')" />
+                </div>
+                <div class="input-container">
+                    <p class="question">D.</p>
+                    <input nz-input nzSize="large" class="login-input" name="answer_d"
+                        [(ngModel)]="question.answers.answer_d" (blur)="saveChanges(question,  'answer')" />
+                </div>
+                <div class="input-container">
+                    <p class="question">E.</p>
+                    <input nz-input nzSize="large" class="login-input" name="answer_e"
+                        [(ngModel)]="question.answers.answer_e" (blur)="saveChanges(question,  'answer')" />
+                </div>
+
+                <div class="button-container">
+                    <button *ngIf="last" class="button-next" (click)="addQuestion()">+ Add</button>
+                    <button class="button-next button-couple" (click)="delete(question)">Delete Question</button>
+
+
+                </div>
+            </form>
+        </div>
+        <div class="no-data" *ngIf="quizQuestions.length === 0 && !newQuestion">
+            <p>This quiz is currently empty, click to start adding questions!</p>
+            <button class="button-next" (click)="addQuestion()">+ Add</button>
+        </div>
+
+        <div *ngIf="newQuestion">
+            <form class="question" #form="ngForm">
+                <p class="notes">*Please provide a question and between 3 to 5 multiple choice answers.</p>
+                <p class="question">Question</p>
+                <input nz-input nzSize="large" class="login-input required question" name="question"
+                    [(ngModel)]="question" />
+                <p class="question">Answer A</p>
+                <input nz-input nzSize="large" class="login-input" required name="answer_a" [(ngModel)]="answer_a" />
+                <p class="question">Answer B</p>
+                <input nz-input nzSize="large" class="login-input" required name="answer_b" [(ngModel)]="answer_b" />
+                <p class="question">Answer C</p>
+                <input nz-input nzSize="large" class="login-input" required name="answer_c" [(ngModel)]="answer_c" />
+                <p class="question">Answer D</p>
+                <input nz-input nzSize="large" class="login-input" name="answer_d" [(ngModel)]="answer_d" />
+                <p class="question">Answer E</p>
+                <input nz-input nzSize="large" class="login-input" name="answer_e" [(ngModel)]="answer_e" />
+
+                <div class="button-container">
+                    <button class="button-next" (click)="home()">Done</button>
+                    <button class="button-next button-couple" (click)="addQuestion('save')">+ Add</button>
+
+                </div>
+            </form>
+        </div>
+
 
 
     </div>
+
+
 
 </div>

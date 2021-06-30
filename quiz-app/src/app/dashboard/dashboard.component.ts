@@ -5,33 +5,33 @@ import { QuizService } from '../../services/quiz.service';
 
 
 @Component({
-  selector: 'app-dashboard',
-  templateUrl: './dashboard.component.html',
-  styleUrls: ['./dashboard.component.scss']
+    selector: 'app-dashboard',
+    templateUrl: './dashboard.component.html',
+    styleUrls: ['./dashboard.component.scss']
 })
 export class DashboardComponent implements OnInit {
-  quizList: any = {};
+    quizList: any;
 
-  constructor(
-    public router: Router,
-    private quiz_service: QuizService
-  ) { }
+    constructor(
+        public router: Router,
+        private quiz_service: QuizService
+    ) { }
 
-  ngOnInit() {
-    this.getQuizzes()
-  }
+    ngOnInit() {
+        this.getQuizzes()
+    }
 
-  async getQuizzes() {
-    await this.quiz_service.getQuizList().then((result) => {
-      this.quizList = result;
-    }).catch((err) => {
-      console.log(err)
-    });
-  }
+    async getQuizzes() {
+        await this.quiz_service.getQuizList().then((result) => { //get quiz subject list
+            this.quizList = result;
+        }).catch((err) => {
+            console.log(err)
+        });
+    }
 
-  selectQuiz(quiz) {
-    this.router.navigate(['quiz-time'], { queryParams: { id: quiz.id }, queryParamsHandling: 'merge' })
-  }
+    selectQuiz(quiz) {
+        this.router.navigate(['quiz-time'], { queryParams: { 'id': quiz.quiz_id }, queryParamsHandling: 'merge' })
+    }
 
 
 

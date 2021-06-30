@@ -26,6 +26,12 @@
             padding-top: 5px;
             padding-bottom: 3px;
         }
+        .logo-text {
+            text-align: right;
+            padding-right: 26px;
+            font-weight: 600px;
+            color: $color_primary;
+        }
     }
     .question-mark {
         margin: auto;
@@ -59,17 +65,22 @@
             font-family: $font_family;
         }
 
-        .login-button {
-            margin: auto;
-            color: $color_secondary !important;
-            font-size: $font_size_3 !important;
-            border-color: $color_secondary !important;
-            border-style: none !important;
-            border-radius: 5px !important;
-            width: 100px !important;
-            background-color: white !important;
-            padding: 5px;
-            font-family: $font_family;
+        .button-container {
+            display: flex;
+            justify-content: space-between;
+
+            .login-button {
+                margin: auto;
+                color: $color_secondary !important;
+                font-size: $font_size_3 !important;
+                border-color: $color_secondary !important;
+                border-style: none !important;
+                border-radius: 5px !important;
+                width: 90px !important;
+                background-color: white !important;
+                padding: 5px;
+                font-family: $font_family;
+            }
         }
     }
 }

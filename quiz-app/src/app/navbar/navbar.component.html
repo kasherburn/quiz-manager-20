@@ -4,8 +4,11 @@
         <div class="edit-quiz cursor" (click)="goHome()">
             <p>Home</p>
         </div>
-        <div class="edit-quiz cursor" (click)="editQuiz()">
-            <p>Edit a quiz</p>
+        <div class="edit-quiz cursor" (click)="editQuiz('create')">
+            <p>Create</p>
+        </div>
+        <div class="edit-quiz cursor" (click)="editQuiz('edit')">
+            <p>Edit</p>
         </div>
         <div class='logout-cont'>
             <p (click)="logout()" class="cursor">LOG OUT</p>

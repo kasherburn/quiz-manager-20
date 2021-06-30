@@ -1,9 +1,10 @@
 <app-navbar></app-navbar>
-<div class="main-container">
-    <p>Select a quiz you would like to view</p>
-    <div class="quiz-img-cont">
-        <img src="../../assets/geography.svg" (click)="selectQuiz(quizList[0])">
-        <img src="../../assets/maths.svg" (click)="selectQuiz(quizList[1])">
-        <img src="../../assets/history.svg" (click)="selectQuiz(quizList[2])">
+<div class="main-container" *ngIf="quizList">
+    <p>Select a quiz you would like to view:</p>
+    <div class="quiz-name-container">
+        <div class="quiz-img-cont" *ngFor="let quiz of quizList">
+            <p class="name" (click)="selectQuiz(quiz)">{{quiz.quiz_name}}</p>
+        </div>
+
     </div>
 </div>

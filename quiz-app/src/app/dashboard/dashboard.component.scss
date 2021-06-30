@@ -5,30 +5,38 @@
     padding-top: 150px;
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
     p {
         font-weight: bold;
         color: $color_primary;
         font-size: $font_size_1;
         font-family: Arial, Helvetica, sans-serif;
     }
+    .name {
+        color: $color_secondary;
+        margin-bottom: 0 !important;
+        padding: 20px;
+
+        &:hover {
+            cursor: pointer;
+        }
+    }
     .quiz-img-cont {
         display: flex;
-        justify-content: space-between;
-        img {
-            height: 300px;
-            width: 300px;
-            border-style: solid;
-            border-width: 3px;
-            border-color: $color_primary;
-            box-shadow: 0px 10px 24px rgba(0, 0, 0, 0.2) !important;
-            opacity: 0.7;
-        }
-        img:hover {
-            opacity: 1;
-            box-shadow: 0px 10px 24px rgba(0, 0, 0, 0.4) !important;
-            cursor: pointer;
-            background-color: $color_tertiary;
-        }
+        justify-content: center;
+        margin: 10px;
+        flex: 1 1 calc(33.33% - 20px);
+        opacity: 1;
+        box-shadow: 0px 10px 24px rgba(0, 0, 0, 0.4) !important;
+        background-color: $color_tertiary;
+        border-radius: 10px;
+    }
+    .quiz-name-container {
+        margin-top: 40px;
+        display: flex;
+        justify-content: space-evenly;
+        align-content: center;
+        flex-wrap: wrap;
     }
 }
