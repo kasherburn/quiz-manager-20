@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { QuizService } from '../../services/quiz.service';
 import { NotificationService } from '../../services/notification.service';
 import { Router } from '@angular/router';
+import { v4 as uuidv4 } from 'uuid';
 
 @Component({
     selector: 'app-quiz-create',
@@ -18,7 +19,7 @@ export class QuizCreateComponent implements OnInit {
     answer_c: string;
     answer_d: string;
     answer_e: string;
-    question_id: number;
+    question_id: number = 0;
     questionNumber: number = 1;
 
     constructor(
@@ -63,7 +64,7 @@ export class QuizCreateComponent implements OnInit {
                 answer_d: this.answer_d,
                 answer_e: this.answer_e,
                 quiz_id: this.quiz_id,
-                question_id: this.question_id ? this.question_id++ : this.quiz_id + 10
+                question_id: uuidv4()
             }
             this.quiz_service.createQuizQuestion(quizQuestion).then((res) => {
                 this.notification.createNotification('Success', 'Success,', 'Your question has been successfully saved.')
@@ -78,7 +79,6 @@ export class QuizCreateComponent implements OnInit {
                 this.notification.createNotification('error', 'There has been a problem,', err)
             });
         }
-
     }
 
     finish() {
